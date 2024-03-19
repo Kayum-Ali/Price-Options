@@ -24,7 +24,7 @@ const Navbar = () => {
             }
           
            </div>
-            <ul className="md:flex  ">
+            <ul className={`md:flex  absolute md:static duration-1000 p-3 bg-lime-400 text-black ${open ? 'top-5 px-6' : 'px-6 -top-60'}`}>
                 {
                     routes.map(route => <Link  key={route.id} route={route}></Link>)
                 }
