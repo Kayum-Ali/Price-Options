@@ -1,11 +1,13 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, } from 'recharts';
+import { Vortex } from 'react-loader-spinner'
 
 
 const Phones = () => {
     const [phones, setPhones] = useState([])
+    const [loading, setLoading] = useState(true)
     useEffect(() => {
         // fetch('https://openapi.programming-hero.com/api/phones?search=iphone')
         // .then(res => res.json())
@@ -21,11 +23,23 @@ const Phones = () => {
                     return obj;
                 })
                 setPhones(phonesWithFakeData)
+                setLoading(false)
             })
 
     }, [])
     return (
         <div className="container mx-auto">
+           { loading &&  <Vortex
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="vortex-loading"
+                wrapperStyle={{}}
+                wrapperClass="vortex-wrapper"
+                colors={['red', 'green', 'blue', 'yellow', 'orange', 'purple']}
+            />}
+
+
             <h2 className="text-2xl"> phones:{phones.length}</h2>
             <BarChart width={800} height={400} data={phones}>
 
